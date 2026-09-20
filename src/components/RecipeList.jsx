@@ -4,15 +4,16 @@ function RecipeList({ recipes }) {
   return (
     <div className="recipe-list">
       {recipes.map((recipe) => (
-        <article key={recipe.id} className="recipe-card">
-          <h2>{recipe.title}</h2>
-          <p>{recipe.description}</p>
-          <p className="cook-time">Cook time: {recipe.cookTime}</p>
-          <a href={recipe.url} target="_blank" rel="noreferrer">
-            View recipe
-          </a>
-        </article>
+        <RecipeItem
+        key={recipe.id}
+        title={recipe.title}
+        description={recipe.description}
+        url={recipe.url}
+        cookTime={recipe.cookTime}
+        />
       ))}
     </div>
   );
 }
+
+export default RecipeList
