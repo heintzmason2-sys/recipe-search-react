@@ -237,29 +237,54 @@ body {
 .recipe-list{
   margin-top: 1.5rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  text-align: left;
 }
 
 .recipe-card{
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-radius: 16px;
   background: #fffaf5;
   border: 1px solid #f1dec9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+}
+.recipe-card h2,
+.recipe-card p,
+.recipe-card a{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .recipe-card h2{
-  margin: 0 0 0.25rem;
-  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
   color: #5b3410;
 }
 .recipe-card p{
-  margin: 0.25rem 0;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
 }
 
 .recipe-card a{
-  color: #d2691e;
-  text-decoration: none;
-  font-weight: 500;
+ margin-top: auto;
+ margin-bottom: 1rem;
+ padding-top: 0.75rem;
+ color: #d2691e;
+ text-decoration: none;
+ font-weight: 600;
 }
 
 .recipe-card a:hover{

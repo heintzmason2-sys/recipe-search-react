@@ -9,7 +9,9 @@ function RecipeList({ recipes }) {
         title={recipe.title}
         description={recipe.description}
         url={recipe.url}
-        cookTime={recipe.cookTime}
+        image={recipe.image}
+        category={recipe.category}
+        area={recipe.area}
         />
       ))}
     </div>

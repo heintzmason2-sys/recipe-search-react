@@ -28,13 +28,19 @@ export function App() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const mapped = (data.meals || []).map((meal)=>({
+        const mapped = (data.meals || []).map((meal) => ({
           id: meal.idMeal,
           title: meal.strMeal,
-          description: meal.strInstructions?.slice(0, 140) + "...",
-          url: meal.strSource || "#",
-          cookTime: "30 min",
-        }));
+          description: meal.strInstructions
+              ? meal.strInstructions.length > 140
+                ? meal.strInstructions.slice(0, 140).trimEnd() + "..."
+                :meal.strInstructions
+              :"No description available.",
+          url: meal.strSource || null,
+          image: meal.strMealThumb || null,
+          category: meal.strCategory || "Uncategorized",
+          area: meal.strArea || "Unknown cuisine",
+    }));
 
         setRecipes(mapped);
     
@@ -55,8 +61,18 @@ function handleSearchTermChange(event){
 }
 
 function handleSearchSubmit(event){
-  event.preventDefault();
-  setSubmittedQuery(searchTerm);
+  event.preventDefault()
+
+  const trimmedQuery = searchTerm.trim();
+
+  if(!trimmedQuery){
+    setError("Please enter a recipe name to search.")
+    setSubmittedQuery("");
+    setRecipes([]);
+    return;
+  }
+  setError(null);
+  setSubmittedQuery(trimmedQuery);
 }
 return(
   <div className='App app-shell'>
