@@ -46,7 +46,7 @@ export function App() {
     
     } catch (err){
       console.error(err);
-      setError(err.message || "Something went wrong fetching recipes.")
+      setError("Unable to load recipes. Please check your internet connection and try again.")
     
     } finally {
       setIsLoading(false);
